@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "4dd33b26-043d-4b09-a1ae-647399bdd4ef",
+		"name": "Apartments-App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36643233"
+	},
+	"item": [
+		{
+			"name": "Apartments",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/apartments?page=4&limit=5&searchQuery=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"apartments"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "4"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "searchQuery",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/apartments/19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"apartments",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"test 19\",\n    \"description\": \" test 19 description\",\n    \"price\": 100,\n    \"bedrooms\": 5,\n    \"bathrooms\": 2,\n    \"square_feet\": 150,\n    \"has_parking\": true,\n    \"has_elevator\": false,\n    \"has_balcony\": true,\n    \"address\": \"test 6\",\n    \"lat\": 1.4356456,\n    \"lng\": 1.8755674,\n    \"projectId\": 2,\n    \"images\": [\n        \"https://example.com/images/apartment1.jpg\",\n        \"https://example.com/images/apartment2.jpg\",\n        \"https://example.com/images/apartment3.jpg\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/apartments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"apartments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
