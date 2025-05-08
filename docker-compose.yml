@@ -28,7 +28,7 @@ services:
       DB_NAME: apartment_db
       DB_PORT: 3306
       PORT: 3000
-    command: ["npm", "start"]
+    command: ["sh", "-c", "npx wait-port db:3306 && npm run setup"]
 
 volumes:
   db-data:
