@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import Apartment from '../models/apartment';
 import { Op } from 'sequelize';
 import ApartmentImage from '../models/apartmentimage';
+import Project from '../models/project';
 
 
 export const listApartments = async (req: Request, res: Response) => {
@@ -37,7 +38,7 @@ export const listApartments = async (req: Request, res: Response) => {
       where: whereClause,
       limit,
       offset,
-      include: [ApartmentImage]
+      include: [ApartmentImage, Project]
     });
 
     res.json({
@@ -55,7 +56,7 @@ export const listApartments = async (req: Request, res: Response) => {
 export const getApartment = async (req: Request, res: Response) => {
   try {
     const apartment = await Apartment.findByPk(req.params.id, {
-      include: [ApartmentImage]
+      include: [ApartmentImage, Project]
     });
 
     if (apartment) {
