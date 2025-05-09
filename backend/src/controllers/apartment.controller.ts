@@ -38,6 +38,7 @@ export const listApartments = async (req: Request, res: Response) => {
       where: whereClause,
       limit,
       offset,
+      distinct: true,
       include: [ApartmentImage, Project]
     });
 

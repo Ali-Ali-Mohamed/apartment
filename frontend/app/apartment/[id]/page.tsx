@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
+import { fetchApartmentById } from '@/app/api'
+
 
 export default function ApartmentDetail() {
   const { id } = useParams()
@@ -10,9 +12,9 @@ export default function ApartmentDetail() {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:3000/api/v1/apartments/${id}`)
-        .then((res) => res.json())
+      fetchApartmentById(id as string)
         .then((data) => setApartment(data))
+        .catch((err) => console.error('Failed to fetch apartment:', err))
     }
   }, [id])
 
@@ -40,7 +42,7 @@ export default function ApartmentDetail() {
             src={
               apartment.ApartmentImages?.length > 0
                 ? apartment.ApartmentImages[currentImageIndex]?.image
-                : '/assets/images/apartment.jpeg' // Make sure this image exists in your public folder
+                : '/assets/images/apartment.jpeg'
             }
             alt={apartment.title}
             className="rounded-lg w-full h-72 object-cover object-center"
