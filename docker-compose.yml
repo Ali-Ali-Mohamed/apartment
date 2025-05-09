@@ -30,6 +30,18 @@ services:
       PORT: 3000
     command: ["sh", "-c", "npx wait-port db:3306 && npm run setup"]
 
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - "3001:3001"
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://backend:3000/api/v1
+      PORT: 3001
+
 volumes:
   db-data:
 
