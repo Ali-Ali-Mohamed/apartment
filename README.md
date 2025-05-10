@@ -2,14 +2,14 @@
 Make sure you have Docker and Docker Compose installed on your system.
 
 ## Clone the Repository
-git clone https://github.com/Ali-Ali-Mohamed/apartment.git
-cd apartment
+`git clone https://github.com/Ali-Ali-Mohamed/apartment.git`
+`cd apartment`
 
 ## Build and Start the Containers
 Run the following commands to build the images and start the services:
 
-docker-compose build
-docker-compose up
+`docker-compose build`
+`docker-compose up`
 
 ### This will:
 Start a MySQL database on port 3308.
