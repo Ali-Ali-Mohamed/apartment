@@ -1,4 +1,3 @@
-// app/layout.tsx
 import './globals.css'
 import { ReactNode } from 'react'
 import Navbar from '@/components/navbar'
@@ -9,6 +8,7 @@ export const metadata = {
   description: 'Browse available apartments',
 }
 
+// This layout wraps around all pages in the application
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">

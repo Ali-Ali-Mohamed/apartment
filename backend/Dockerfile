@@ -1,5 +1,5 @@
 # Use an official Node.js LTS version with Alpine for a small image size
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Set working directory inside container
 WORKDIR /app

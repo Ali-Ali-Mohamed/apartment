@@ -1,3 +1,4 @@
+// Card to display apartment details
 export default function ApartmentCard({ apartment }: { apartment: any }) {
   const imageUrl =
     apartment.ApartmentImages?.[0]?.image || '/assets/images/apartment.jpeg'

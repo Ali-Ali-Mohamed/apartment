@@ -4,12 +4,13 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import { fetchApartmentById } from '@/app/api'
 
-
+// This component fetches and displays the details of a specific apartment
 export default function ApartmentDetail() {
   const { id } = useParams()
   const [apartment, setApartment] = useState<any>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
+  // Fetch apartment details by ID when the component mounts
   useEffect(() => {
     if (id) {
       fetchApartmentById(id as string)
@@ -18,6 +19,7 @@ export default function ApartmentDetail() {
     }
   }, [id])
 
+  // Handle image slider navigation
   const handlePrev = () => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === 0 ? apartment.ApartmentImages.length - 1 : prevIndex - 1
@@ -30,6 +32,7 @@ export default function ApartmentDetail() {
     )
   }
 
+  // If apartment data is not yet loaded, show a loading message
   if (!apartment) return <p>Loading...</p>
 
   return (

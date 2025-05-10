@@ -5,6 +5,7 @@ import Link from 'next/link'
 import ApartmentCard from '@/components/ApartmentCard'
 import { fetchApartments, fetchProjects } from './api'
 
+// This component fetches and displays a list of apartments with search and filter functionality
 export default function Home() {
   const [apartments, setApartments] = useState<any[]>([])
   const [filteredApartments, setFilteredApartments] = useState<any[]>([])
@@ -27,7 +28,7 @@ export default function Home() {
   // Fetch apartments on search query change
   useEffect(() => {
     setLoading(true)
-    fetchApartments(1, 1000, searchQuery) // Load large enough to paginate client-side
+    fetchApartments(1, 1000, searchQuery)
       .then((data) => {
         const fetched = data.data || []
         setApartments(fetched)
@@ -52,17 +53,20 @@ export default function Home() {
     setFilteredApartments(filtered.slice(start, end))
   }, [apartments, selectedProjectId, page])
 
+  // Handle search input change
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
     setPage(1)
   }
 
+  // Handle project filter change
   const handleProjectFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = parseInt(e.target.value)
     setSelectedProjectId(isNaN(val) ? null : val)
     setPage(1)
   }
 
+  // Handle pagination
   const handleNext = () => {
     if (page < totalPages) setPage(page + 1)
   }

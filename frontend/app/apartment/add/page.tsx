@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { addApartment, fetchProjects } from '@/app/api'
 
+
+// This component is responsible for adding a new apartment
 export default function AddApartment() {
   const router = useRouter()
   const [projects, setProjects] = useState<{ id: number; name: string }[]>([])
@@ -39,6 +41,7 @@ export default function AddApartment() {
     loadProjects()
   }, [])
 
+  // Handle form input changes
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target
     setForm((prev) => ({
@@ -47,14 +50,17 @@ export default function AddApartment() {
     }))
   }
 
+  // This function updates the image URL at the specified index
   const handleImageChange = (index: number, value: string) => {
     const newImages = [...form.images]
     newImages[index] = value
     setForm({ ...form, images: newImages })
   }
 
+  // This function adds a new image field to the form
   const addImageField = () => setForm({ ...form, images: [...form.images, ''] })
 
+  // This function handles the form submission
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     setLoading(true)
@@ -79,10 +85,12 @@ export default function AddApartment() {
     }
   }
 
+  // Render the form for adding a new apartment
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow rounded">
       <h1 className="text-2xl font-bold mb-4">Add New Apartment</h1>
       {error && <div className="text-red-500 mb-4">{error}</div>}
+      {/* Render the form for adding a new apartment */}
       <form onSubmit={handleSubmit} className="space-y-4">
         {[
           ['title', 'Title', 'text'],
