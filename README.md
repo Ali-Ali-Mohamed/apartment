@@ -22,4 +22,4 @@ Backend API: http://localhost:3000/api/v1
 
 ## Stop the Containers
 To stop the running containers:  
-docker-compose down
+`docker-compose down`
