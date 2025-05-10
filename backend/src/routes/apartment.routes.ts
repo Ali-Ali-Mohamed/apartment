@@ -4,6 +4,7 @@ import { listApartments, getApartment, addApartment } from '../controllers/apart
 
 const router = express.Router();
 
+// Define routes for apartment-related operations
 router.get('/', listApartments);
 router.get('/:id', getApartment);
 router.post('/', addApartment);

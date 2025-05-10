@@ -50,18 +50,9 @@ Apartment.init({
     autoIncrement: true,
     primaryKey: true
   },
-  title: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  description: {
-    type: DataTypes.TEXT,
-    allowNull: false
-  },
-  price: {
-    type: DataTypes.FLOAT,
-    allowNull: false
-  },
+  title: DataTypes.STRING,
+  description: DataTypes.TEXT,
+  price: DataTypes.FLOAT,
   bedrooms: DataTypes.INTEGER,
   bathrooms: DataTypes.INTEGER,
   square_feet: DataTypes.FLOAT,

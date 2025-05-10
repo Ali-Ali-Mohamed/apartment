@@ -28,10 +28,7 @@ Project.init(
       autoIncrement: true,
       primaryKey: true
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    }
+    name: DataTypes.STRING,
   },
   {
     sequelize,

@@ -4,18 +4,19 @@ import { Op } from 'sequelize';
 import ApartmentImage from '../models/apartmentimage';
 import Project from '../models/project';
 
-
+// List apartments with pagination and search
 export const listApartments = async (req: Request, res: Response) => {
   // for search
   const searchQuery = req.query.searchQuery as string | undefined;
 
   // for pagination
   const page = parseInt(req.query.page as string) || 1;
-  const limit = parseInt(req.query.limit as string) || 10;
+  const limit = parseInt(req.query.limit as string) || 6;
   const offset = (page - 1) * limit;
 
   let whereClause = {};
 
+  // if searchQuery is provided, add it to the where clause
   if (searchQuery) {
     whereClause = {
       [Op.or]: [
@@ -34,6 +35,7 @@ export const listApartments = async (req: Request, res: Response) => {
   }
 
   try {
+    // Fetch apartments with pagination and search
     const { rows: apartments, count: total } = await Apartment.findAndCountAll({
       where: whereClause,
       limit,
@@ -42,6 +44,7 @@ export const listApartments = async (req: Request, res: Response) => {
       include: [ApartmentImage, Project]
     });
 
+    // response with pagination info
     res.json({
       currentPage: page,
       totalPages: Math.ceil(total / limit),
@@ -54,12 +57,15 @@ export const listApartments = async (req: Request, res: Response) => {
   }
 };
 
+// Get apartment by ID
 export const getApartment = async (req: Request, res: Response) => {
   try {
+    // Fetch apartment by ID
     const apartment = await Apartment.findByPk(req.params.id, {
       include: [ApartmentImage, Project]
     });
 
+    // Check if apartment exists
     if (apartment) {
       res.json(apartment);
     } else {
@@ -71,8 +77,10 @@ export const getApartment = async (req: Request, res: Response) => {
   }
 };
 
+// Add apartment
 export const addApartment = async (req: Request, res: Response) => {
   try {
+    // Validate request body
     const {
       title,
       description,
@@ -90,6 +98,7 @@ export const addApartment = async (req: Request, res: Response) => {
       images
     } = req.body;
 
+    // Check if all required fields are present and create apartment
     const newApartment = await Apartment.create({
       title,
       description,
@@ -106,6 +115,7 @@ export const addApartment = async (req: Request, res: Response) => {
       projectId
     });
 
+    // Check if images are provided and create apartment images
     if (images && Array.isArray(images)) {
       const imageRecords = images.map((image: string) => ({
         image,
@@ -114,6 +124,7 @@ export const addApartment = async (req: Request, res: Response) => {
       await ApartmentImage.bulkCreate(imageRecords);
     }
 
+    // Fetch the newly created apartment with images
     const apartmentWithImages = await Apartment.findByPk(newApartment.id, {
       include: [ApartmentImage]
     });

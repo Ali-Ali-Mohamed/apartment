@@ -29,10 +29,7 @@ ApartmentImage.init(
       autoIncrement: true,
       primaryKey: true
     },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
+    image: DataTypes.STRING,
     apartmentId: {
       type: DataTypes.INTEGER,
       allowNull: false,

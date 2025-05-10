@@ -4,6 +4,7 @@ import { listProjects } from '../controllers/project.controller';
 
 const router = express.Router();
 
+// Define routes for project-related operations
 router.get('/', listProjects);
 
 export default router;

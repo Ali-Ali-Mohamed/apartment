@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import Project from '../models/project';
 
+// get all projects
 export const listProjects = async (req: Request, res: Response) => {
   try {
     const projects = await Project.findAll();
